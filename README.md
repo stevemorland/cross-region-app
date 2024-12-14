@@ -1,8 +1,8 @@
 # Welcome to your CDK TypeScript project
 
-This is a blank project for CDK development with TypeScript.
+The article that goes with this repo can be found here:
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+https://medium.com/@smorland/serverless-multi-region-active-active-architecture-with-geolocated-routing-1eaa555e6d8b
 
 ## Useful commands
 
