@@ -24,7 +24,7 @@ export class CrossRegionAppStack extends cdk.Stack {
     const domainCert = certificate_manager.Certificate.fromCertificateArn(this, 'domainCert', certificateArn);
     
     const lambdaFunction = new lambda.Function(this, 'lambda-function', {
-      functionName: `${props.stackName}-fuction`,
+      functionName: `${props.stackName}-function`,
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: 'index.main',
       code: lambda.Code.fromAsset(path.join(__dirname, '/../src')),
@@ -45,12 +45,12 @@ export class CrossRegionAppStack extends cdk.Stack {
     const rootIntegration = api.root.addResource('hello');
     rootIntegration.addMethod('GET');
 
-    const zone = route53.HostedZone.fromHostedZoneAttributes(this, "hostedZone", {
+    const zone = route53.HostedZone.fromHostedZoneAttributes(this, "hosted-zone", {
       hostedZoneId: props.hostedZoneId,
       zoneName: props.domainName
     });
 
-    new route53.ARecord(this, "aliasRecord", {
+    new route53.ARecord(this, "alias-record", {
       recordName: props.domainName,
       target: route53.RecordTarget.fromAlias(
         new targets.ApiGateway(api)
